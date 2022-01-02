@@ -55,32 +55,66 @@
  Coding Challenge #3
  */
 
-const mark = {
-  firstName: "Mark",
-  lastName: "Miller",
-  mass: 78,
-  height: 1.68,
+// const mark = {
+//   firstName: "Mark",
+//   lastName: "Miller",
+//   mass: 78,
+//   height: 1.68,
 
-  calcIBM: function () {
-    let ibm = this.mass / this.height ** 2;
-    return ibm;
-  },
+//   calcIBM: function () {
+//     let ibm = this.mass / (this.height * this.height);
+//     return ibm;
+//   },
+// };
+
+// const john = {
+//   firstName: "John",
+//   lastName: "Smith",
+//   mass: 92,
+//   height: 1.95,
+
+//   calcIBM: function () {
+//     let ibm = this.mass / (this.height * this.height);
+//     return ibm;
+//   },
+// };
+
+// let biggerIBM =
+//   mark.calcIBM() > john.calcIBM()
+//     ? `Mark's BMI(${mark.calcIBM()}) is higher than John's(${john.calcIBM()})`
+//     : `John's BMI(${john.calcIBM()}) is higher than Mark's`;
+// console.log(biggerIBM);
+
+/*
+ Coding Challenge #3
+ */
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const calcTip = (bill) => {
+  if (bill >= 50 && bill <= 300) {
+    return bill * 0.15;
+  } else {
+    return bill * 0.2;
+  }
+};
+for (let i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+}
+
+console.log(tips);
+
+const calcAverage = (arr) => {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+
+  const average = sum / arr.length;
+  return average;
 };
 
-const john = {
-  firstName: "John",
-  lastName: "Smith",
-  mass: 92,
-  height: 1.95,
+const billsAverage = calcAverage(bills);
+console.log(billsAverage);
 
-  calcIBM: function () {
-    let ibm = this.mass / this.height ** 2;
-    return ibm;
-  },
-};
-
-let biggerIBM =
-  mark.calcIBM() > john.calcIBM()
-    ? `Mark's BMI(${mark.calcIBM()}) is higher than John's(${john.calcIBM()})`
-    : `John's BMI(${john.calcIBM()}) is higher than Mark's`;
-console.log(biggerIBM);
+const tipsAverage = calcAverage(tips);
+console.log(tipsAverage);
