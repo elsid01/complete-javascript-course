@@ -83,36 +83,64 @@ const game = {
   },
 };
 
-// 1. Create one player array for each team
+// // 1. Create one player array for each team
 
-const[players1, players2] = game.players;
+// const[players1, players2] = game.players;
 
 
-// 2. The first player and the field players
+// // 2. The first player and the field players
 
-const[gk1,...fieldPlayer1] = players1;
+// const[gk1,...fieldPlayer1] = players1;
 
-const[gk2,...fieldPlayer2] = players2;
+// const[gk2,...fieldPlayer2] = players2;
 
-// 3. Create an array containing all players of both teams
+// // 3. Create an array containing all players of both teams
 
-const [... allPlayers] = [...players1, ...players2];
+// const [... allPlayers] = [...players1, ...players2];
 
-// 4. All the original Bayern Munich team and 3 substitudes
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// // 4. All the original Bayern Munich team and 3 substitudes
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 
-// 5. Create one variable for each odd
-const {team1, x: draw, team2} = {...game.odds};
+// // 5. Create one variable for each odd
+// const {team1, x: draw, team2} = {...game.odds};
 
-// 6. function printGoals
+// // 6. function printGoals
 
-const printGoals = function(...randomPlayers){
-  console.log(`${randomPlayers.length} were scored`);
+// const printGoals = function(...randomPlayers){
+//   console.log(`${randomPlayers.length} were scored`);
+// }
+
+
+// // 7. 
+
+// console.log(game.odds.team1 || game.odds.team2);
+
+/*
+Challenge 2
+*/
+
+// 1.
+for(const [i, player] of game.scored.entries()){
+  console.log(`Goal ${i + 1} : ${player} `);
 }
 
+// 2.
+let ave = 0;
+const values = Object.values(game.odds);
+const name1 = Object.values(game.team1);
+for(const oddNum of values ){
+  ave += oddNum;
+  
+}
+ave /= values.length;
+console.log(ave);
 
-// 7. 
+// 3.
 
 
 
-console.log(game.odds.team1 || game.odds.team2);
+for(const [team, odd] of Object.entries(game.odds)){
+ const word = team === 'x' ? 'draw': `victory ${game[team]}`;
+ console.log(`Odd of ${word}: ${odd}`)
+
+}
