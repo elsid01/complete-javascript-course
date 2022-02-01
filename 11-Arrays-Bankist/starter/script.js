@@ -74,3 +74,24 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+const checkDogs = function(dogsJulia, dogsKate){
+ //1. Delete the first and the last 2 elements
+ const newDogsJulia = dogsJulia.slice(1, -2);
+
+ //.An array with both Julia's and kate's data
+ const bothArrays = [...newDogsJulia , ...dogsKate];
+
+ //.Log to the console
+ bothArrays.forEach((dog, i) => {
+   
+  let dogAge = dog >= 3 ? `is an adult`: `is still a puppy`;
+  console.log(`Dog number ${bothArrays[i] + 1} ${dogAge}, and is ${dog} years old`);
+   
+ });
+}
+
+const katesDogs = [4, 1, 15, 8, 3];
+const juliasDogs = [3, 5, 2, 12, 7];
+
+checkDogs(juliasDogs, katesDogs);

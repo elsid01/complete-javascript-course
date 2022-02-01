@@ -119,28 +119,83 @@ const game = {
 Challenge 2
 */
 
-// 1.
-for(const [i, player] of game.scored.entries()){
-  console.log(`Goal ${i + 1} : ${player} `);
-}
+// // 1.
+// for(const [i, player] of game.scored.entries()){
+//   console.log(`Goal ${i + 1} : ${player} `);
+// }
 
-// 2.
-let ave = 0;
-const values = Object.values(game.odds);
-const name1 = Object.values(game.team1);
-for(const oddNum of values ){
-  ave += oddNum;
+// // 2.
+// let ave = 0;
+// const values = Object.values(game.odds);
+// const name1 = Object.values(game.team1);
+// for(const oddNum of values ){
+//   ave += oddNum;
   
+// }
+// ave /= values.length;
+// console.log(ave);
+
+// // 3.
+
+
+
+// for(const [team, odd] of Object.entries(game.odds)){
+//  const word = team === 'x' ? 'draw': `victory ${game[team]}`;
+//  console.log(`Odd of ${word}: ${odd}`)
+
+// }
+
+
+// Challenge 3
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
+
+
+// // 1. 
+
+
+
+// const events = [...new Set((gameEvents.values()))];
+
+// console.log(events);
+
+
+
+// // 2. 
+
+// gameEvents.delete(64);
+// console.log(gameEvents);
+
+
+// // 4.
+// for(let [key, value] of gameEvents){
+//   key < 45 ? console.log(`[FIRST HALF]${key}: ${value}`)
+//   : console.log(`[SECOND HALF]${key}: ${value}`);
+// }
+
+
+
+const capiNames = function(name){
+  const names = name.split(" ");
+  const nameArr = []
+
+  for(const n of names){
+    nameArr.push( n[0].toUpperCase() + n.slice(1));
+  }
+
+  console.log(nameArr.join(' '));
 }
-ave /= values.length;
-console.log(ave);
-
-// 3.
 
 
-
-for(const [team, odd] of Object.entries(game.odds)){
- const word = team === 'x' ? 'draw': `victory ${game[team]}`;
- console.log(`Odd of ${word}: ${odd}`)
-
-}
+capiNames('ely ahmed saloum mbaye');
