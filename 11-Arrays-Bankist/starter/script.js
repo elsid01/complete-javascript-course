@@ -61,6 +61,44 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+
+
+const displayMovements = function(movements){
+  containerMovements.innerHTML ='';
+  movements.forEach(function(mov, i){
+
+    const type = mov > 0 ?'deposit' :'withdrawal';
+    const html = `
+    <div class="movements__row">
+          <div class="movements__type movements__type--${type}">${i + 1}  ${type}</div>
+          <div class="movements__value">${mov}</div>
+        </div>
+        `;
+
+        containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displayMovements(account1.movements);
+
+const calcDisplayBalence = function(movements){
+  const balence = movements.reduce((acc, mov) => acc + mov, 0); 
+  
+  labelBalance.textContent = `${balence}€`;
+}
+
+calcDisplayBalence(account1.movements);
+const createUsernames = function(accs){
+  accs.forEach(acc => {
+    acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
+  });
+  
+}
+
+createUsernames(accounts);
+
+
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -75,23 +113,33 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-const checkDogs = function(dogsJulia, dogsKate){
- //1. Delete the first and the last 2 elements
- const newDogsJulia = dogsJulia.slice(1, -2);
+// const checkDogs = function(dogsJulia, dogsKate){
+//  //1. Delete the first and the last 2 elements
+//  const newDogsJulia = dogsJulia.slice(1, -2);
 
- //.An array with both Julia's and kate's data
- const bothArrays = [...newDogsJulia , ...dogsKate];
+//  //.An array with both Julia's and kate's data
+//  const bothArrays = [...newDogsJulia , ...dogsKate];
 
- //.Log to the console
- bothArrays.forEach((dog, i) => {
+//  //.Log to the console
+//  bothArrays.forEach((dog, i) => {
    
-  let dogAge = dog >= 3 ? `is an adult`: `is still a puppy`;
-  console.log(`Dog number ${bothArrays[i] + 1} ${dogAge}, and is ${dog} years old`);
+//   let dogAge = dog >= 3 ? `is an adult`: `is still a puppy`;
+//   console.log(`Dog number ${ i + 1} ${dogAge}, and is ${dog} years old`);
    
- });
-}
+//  });
+// }
 
-const katesDogs = [4, 1, 15, 8, 3];
-const juliasDogs = [3, 5, 2, 12, 7];
+// const katesDogs = [4, 1, 15, 8, 3];
+// const juliasDogs = [3, 5, 2, 12, 7];
 
-checkDogs(juliasDogs, katesDogs);
+// checkDogs(juliasDogs, katesDogs);
+
+
+const deposits = movements.filter(movement => movement > 0);
+console.log(deposits);
+
+const withdrawals = movements.filter( movement => movement < 0);
+console.log(withdrawals);
+
+const balence = movements.reduce((acc, cur, i, arr) => acc + cur);
+console.log(balence);
