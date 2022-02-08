@@ -260,11 +260,51 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const balence = movements.reduce((acc, cur, i, arr) => acc + cur);
 // console.log(balence);
 
-const calcAverageHumanAge = (dogArray) => dogArray
-  .map(age => age <= 2 ? 2 * age : 16 + age * 4 )
-  .filter( humanAge => humanAge >= 18).reduce((acc, cur, i, arr) => acc + cur/arr.length, 0);
+// const calcAverageHumanAge = (dogArray) => dogArray
+//   .map(age => age <= 2 ? 2 * age : 16 + age * 4 )
+//   .filter( humanAge => humanAge >= 18).reduce((acc, cur, i, arr) => acc + cur/arr.length, 0);
 
  
 
 
-console.log(calcAverageHumanAge([5,2,4,1,15,8,3]));
+// console.log(calcAverageHumanAge([5,2,4,1,15,8,3]));
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+  ];
+
+
+  //1. Recommended food portion
+
+  const foodWeight = dogs.forEach(dog =>dog.foodRecommended = Math.trunc( dog.weight**0.75 * 28));
+
+  
+
+  //2. Sarah's dog
+  const sarahsDaog = dogs.find((dog) => dog.owners.includes('Sarah'));
+         
+  console.log(sarahsDaog);
+
+  console.log(`Sarah's dog is eating too ${sarahsDaog.curFood > sarahsDaog.foodRecommended ? 'much' : 'little'}`);
+
+  const ownerEatTooMuch = dogs.filter(dog => dog.curFood > dog.foodRecommended).flatMap(dog => dog.owners);
+  console.log(ownerEatTooMuch);
+
+  const ownerEatTooLittle= dogs.filter(dog => dog.curFood < dog.foodRecommended).flatMap(dog => dog.owners);
+
+  console.log(ownerEatTooLittle);
+
+ const longString1 = ownerEatTooLittle.reduce((name , cur) => `${name} and ${cur}`).concat(' eat too little');
+
+ console.log(longString1);
+
+const longString2 = ownerEatTooMuch.join(' and ')+` dogs eat too much` ;
+
+console.log(longString2);
+
+const normalDog =  dogs.filter(dog => dog.curFood === dog.foodRecommended);
+
+console.log(`${normalDog.length > 1 ? 'There are'  : 'There is '} ${normalDog.length} dogs eating normal! `);
