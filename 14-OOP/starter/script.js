@@ -11,27 +11,41 @@
 }
 
 Car.prototype.accelerate = function(){
- return this.speed += 10;
+ this.speed += 10;
+ console.log(`${this.make} is going at ${this.speed}km/h`)
 }
 
 Car.prototype.brake = function(){
-  return this.speed -= 5;
+  this.speed -= 5;
+  console.log(`${this.make} is going at ${this.speed}km/h`)
 }
 
-const journey = new Car("Dodge", 45);
+const EV = function(make, speed, charge){
+  Car.call(this,make, speed);
+  this.charge = charge;
+}
 
-console.log(journey.accelerate());
-console.log(journey.brake());
+const tesla = new EV('Tesla', 120, 20);
 
-console.log(journey.make);
+// Link the prototypes
 
-console.log(journey.speed)
+EV.prototype = Object.create(Car.prototype);
 
-const Benz = new Car('Mersedez', 70);
+EV.prototype.chargeBattery = function(chargeTo){
+  this.charge = chargeTo;
+}
 
-console.log(Benz.accelerate());
-console.log(Benz.brake());
+EV.prototype.accelerate = function(){
+  this.speed += 20;
+  this.charge--;
+  console.log(`${this.make} is going at ${this.speed}km/h with a charge of ${this.charge}`);
+}
 
-console.log(Benz.make);
+class Account{
+  firstName = 'Ely'
+  #movements = [];
+}
 
-console.log(Benz.speed)
+const acc1 = new Account();
+
+console.log(acc1.firstName)
